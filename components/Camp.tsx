@@ -1,3 +1,4 @@
+import { PEOPLE_URL } from "@/constants";
 import Image from "next/image";
 
 type CampSiteProps = {
@@ -15,7 +16,7 @@ const CampSite = ({
 }: CampSiteProps) => {
   return (
     <div
-      className={`h-full w-full min-w-[110px] ${backgroundImage} bg-cover bg-no-repeat lg:rounded-r-5xl 2xl:rounded-5xl`}
+      className={`h-full w-full min-w-[1100px] ${backgroundImage} bg-cover bg-no-repeat lg:rounded-r-5xl 2xl:rounded-5xl`}
     >
       <div className="flex h-full flex-col items-start justify-between p-6 lg:px-20 lg:py-10">
         <div className="flexCenter gap-4">
@@ -27,6 +28,22 @@ const CampSite = ({
             <p className="regular-14 text-white">{subtitle}</p>
           </div>
         </div>
+
+        <div className="flexCenter gap-6">
+          <span className="flex -space-x-4 overflow-hidden">
+            {PEOPLE_URL.map((url) => (
+              <Image
+                className="inline-block h-10 w-10 rounded-full"
+                src={url}
+                key={url}
+                alt="person"
+                width={52}
+                height={52}
+              />
+            ))}
+          </span>
+          <p className="bold-16 md:bold-20 text-white">{peopleJoined}</p>
+        </div>
       </div>
     </div>
   );
@@ -34,12 +51,18 @@ const CampSite = ({
 
 const Camp = () => {
   return (
-    <section className="border-2 border-green-500 2xl:max-container relative flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20">
+    <section className="2xl:max-container relative flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20">
       <div className="hide-scrollbar flex h-[340px] w-full items-start justify-start gap-8 overflow-x-auto lg:h-[400px] xl:h-[640px]">
         <CampSite
           backgroundImage="bg-bg-img-1"
           title="Putuk Truno Camp"
           subtitle="Prigen, Pasuruan"
+          peopleJoined="50+ Joined"
+        />
+        <CampSite
+          backgroundImage="bg-bg-img-2"
+          title="Mountain View Camp"
+          subtitle="Somewhere in the Wilderness"
           peopleJoined="50+ Joined"
         />
       </div>
